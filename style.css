@@ -3,6 +3,8 @@
 }
 
 body {
+    margin: 0;
+    padding: 0;
     background-image: url(./img/bg.png);
     background-size: cover;
 }
@@ -12,11 +14,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     text-align: center;
+    padding-top: 200px;
 }
 
-#sec h1{
+#sec h1 {
     color: white;
 }
 
@@ -102,6 +105,7 @@ body {
     font-family: "Poppins", sans-serif;
     display: none;
     text-align: center;
+    box-shadow: 0 25px 50px rgb(15, 161, 180);
 }
 
 .popup button {
@@ -138,3 +142,10 @@ a {
     text-decoration: none;
     padding: 5px 0;
 }
+
+@media screen and (max-width: 768px) {
+    body {
+      background-size: contain;
+    }
+  }
+  
