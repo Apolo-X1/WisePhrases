@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wise Phrases</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/401/401559.png">
+</head>
+
+<body>
+    <!-- phrase -->
+    <section id="sec">
+        <h1>Random Phrase</h1>
+        <div class="quote-container">
+            <p class="quote" id="frase"></p>
+            <p class="author" id="autor"></p>
+        </div>
+        <button onclick="obtenerFrase()" class="button type3">Click me</button>
+    </section>
+
+    <!-- popup -->
+    <div class="popup">
+        <button id="close">&times;</button>
+        <h2>info</h2>
+        <p>
+            This page generates random phrases from an API, enjoy it :)
+        </p>
+        <a href="#" style="border-radius: 7px; display: none;">Ok</a>
+    </div>
+
+    <!-- phrase -->
+    <script>
+        async function obtenerFrase() {
+            try {
+                const response = await fetch('https://type.fit/api/quotes');
+                const data = await response.json();
+
+                const randomIndex = Math.floor(Math.random() * data.length);
+                const frase = data[randomIndex].text;
+                const autor = data[randomIndex].author || 'Autor desconocido';
+
+                mostrarFrase(frase, autor);
+            } catch (error) {
+                console.log('Ha ocurrido un error:', error);
+            }
+        }
+
+        function mostrarFrase(frase, autor) {
+            const fraseElement = document.getElementById('frase');
+            const autorElement = document.getElementById('autor');
+            fraseElement.textContent = frase;
+            autorElement.textContent = `- ${autor}`;
+        }
+    </script>
+
+    <!-- popup -->
+    <script>
+        window.addEventListener("load", function () {
+            setTimeout(
+                function open(event) {
+                    document.querySelector(".popup").style.display = "block";
+                },
+                1000
+            )
+        });
+
+
+        document.querySelector("#close").addEventListener("click", function () {
+            document.querySelector(".popup").style.display = "none";
+        });
+    </script>
+
+</body>
+
+</html>
